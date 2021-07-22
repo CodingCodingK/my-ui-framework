@@ -1,2 +1,2 @@
 # my-ui-framework
- for learning
+ for learning code
