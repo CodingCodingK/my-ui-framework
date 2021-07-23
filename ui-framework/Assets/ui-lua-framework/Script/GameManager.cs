@@ -40,7 +40,7 @@ namespace CAE.Core
             UIMgr.Instance.Init();
             // 所有的Panel存放字典、Layer存放字典都在这里。字典相关方法、PanelBase的一些基本方法比如Open、Close也在此。PanelBase自己的OnOpen也会在这被手动调用。
             PanelMgr.Instance.Init();
-            
+            // TODO 0723
             LuaMgr.Instance.Init();
             
         }

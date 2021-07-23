@@ -36,7 +36,7 @@ namespace CAE.Core
         public void Init()
         {
             mLuaState = new LuaEnv();
-            // TODO 20210722 看到看不懂路径为什么在LuaProject\script文件夹里
+            // script.init会被loader转换为路径LuaProject/script/init.lua
             mLuaState.AddLoader(HandleLoad);
             mLuaState.DoString("require('script.init')");
 
