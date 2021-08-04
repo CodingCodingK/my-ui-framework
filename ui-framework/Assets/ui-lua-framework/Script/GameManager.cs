@@ -28,6 +28,9 @@ namespace CAE.Core
             get { return ms_instance; }
         }
 
+        /// <summary>
+        /// 本脚本挂在GameManager游戏物体上，负责各模块Manager的初始化与销毁
+        /// </summary>
         private void Awake()
         {
             // 单例获取

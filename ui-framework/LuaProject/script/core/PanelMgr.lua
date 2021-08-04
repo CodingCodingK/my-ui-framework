@@ -62,8 +62,9 @@ end
 function PanelMgr:NewPanel(panelName, prefabPath, transform, gameObject)
 
     assert(supercline.classes[panelName], "unknown panel class: "..panelName)
-
+    
     local cls = supercline.classes[panelName]
+    -- TODO：这里调用了类的实例化，那么该类【panelName】的Ctor构造方法，是在哪里定义的呢？类【panelName】又是什么时候加入字典的呢？
     local obj = cls.New(transform, gameObject)
     
     self.panels[prefabPath].Instance = obj
@@ -80,6 +81,7 @@ function PanelMgr:NewPanelItem(itemName, transform, gameObject)
 end
 
 function PanelMgr:OnOpen(prefabPath, controls)
+    print('test,onpen!',prefabPath,controls)
     self.panels[prefabPath].Instance:OnOpen(controls)
 end
 
