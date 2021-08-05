@@ -30,6 +30,9 @@ namespace CAE.Core
 
         public static LuaMgr Instance { get; } = Activator.CreateInstance<LuaMgr>();
 
+        /// <summary>
+        /// 和lua侧得 supercline.lua.PanelMgr 对应
+        /// </summary>
         public ILuaPanelMgr LuaPanelMgr
         { get; private set; }
 
@@ -39,8 +42,9 @@ namespace CAE.Core
             // script.init会被loader转换为路径LuaProject/script/init.lua
             mLuaState.AddLoader(HandleLoad);
             mLuaState.DoString("require('script.init')");
-
+            
             NewLuaPanelMgr newFunc = mLuaState.Global.GetInPath<NewLuaPanelMgr>("supercline.lua.PanelMgr");
+            // LuaPanelMgr直接对接lua侧得supercline.lua.PanelMgr
             LuaPanelMgr = newFunc();
 
             // TO CLine: test main, u can add another interface to do.

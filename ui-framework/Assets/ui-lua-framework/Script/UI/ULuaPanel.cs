@@ -25,8 +25,11 @@ namespace CAE.Core
 
     public sealed class ULuaPanel : PanelBase
     {
+        // 是否显示Mask
         public bool Mask = false;
+        // 层级
         public int Layer = 0;
+        // Lua脚本
         public string LuaPanelName = string.Empty;
 
         public override bool PanelMask
@@ -41,6 +44,7 @@ namespace CAE.Core
 
         public override void OnCreate()
         {
+            // 调用lua侧得supercline.lua.PanelMgr中NewPanel方法
             LuaMgr.Instance.LuaPanelMgr.NewPanel(LuaPanelName, Prefab, transform, gameObject);
         }
 

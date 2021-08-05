@@ -75,6 +75,7 @@ namespace CAE.Core
 
         /// <summary>
         /// 打开Panel：寻找字典中的指定panel运行其OnOpen()方法，如果没有，就创建一个加入字典。
+        /// 注意！！！这个方法，只有被lua调用过。所以这是给lua端的接口。具体是给PanelMgr.lua中同名方法用的。
         /// </summary>
         /// <param name="prefabPath"></param>
         /// <param name="show">初始状态：panel是否显示</param>
@@ -195,7 +196,7 @@ namespace CAE.Core
 
         /// <summary>
         /// 销毁Panel：执行panel的OnHide()、OnClose()，销毁 GameObject 并从 mPanelHash字典 中去除
-        /// </summary>
+        /// </summary> 
         /// <param name="panel"></param>
         private void DestroyPanel(PanelBase panel)
         {

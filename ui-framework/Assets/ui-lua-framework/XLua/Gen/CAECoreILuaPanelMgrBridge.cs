@@ -932,6 +932,9 @@ namespace XLua.CSObjectWrap
 #endif
 		}
         
+		/// <summary>
+		/// 调用 PanelMgr.lua 文件的 PanelMgr:Main() 方法
+		/// </summary>
 		void CAE.Core.ILuaPanelMgr.Main()
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE

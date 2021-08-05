@@ -1,7 +1,9 @@
+-- 创建PanelLogin，并会放入supercline.classes中
 local PanelLogin = supercline.class("PanelLogin", supercline.PanelBase)
 
 supercline.Prefab.PanelLogin = "/Prefabs/UI/PanelLogin.prefab"
 
+-- Ctor，在cls.New方法中会调用
 function PanelLogin:Ctor(transform, gameObject)
     
     self.LoopGridLogin = false
