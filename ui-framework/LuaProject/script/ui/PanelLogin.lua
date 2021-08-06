@@ -16,7 +16,8 @@ function PanelLogin:OnOpen(controls)
         print(string.format("<color=cyan> %s </color>", v.gameObject.name))
     end
 
-    -- 获取了 LoopGrid_Login GameObject上的UILoopGrid组件？
+    -- 获取了PanelLogin Prefab上的UILoopGrid组件
+    -- TODO get_Item方法具体是什么，在哪实现的？
     self.LoopGridLogin = controls:get_Item("LoopGrid_Login")
     self.LoopGridLogin:ShowList(20)
 end

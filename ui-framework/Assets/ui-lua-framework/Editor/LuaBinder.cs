@@ -26,6 +26,9 @@ namespace CAE.Core
     using UnityEngine.Events;
     using UnityEngine.EventSystems;
 
+    /// <summary>
+    /// XLua的标签统一在这打
+    /// </summary>
     public static class LuaBinder
     {
         [LuaCallCSharp]

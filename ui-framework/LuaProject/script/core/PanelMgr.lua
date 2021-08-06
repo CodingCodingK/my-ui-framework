@@ -167,6 +167,7 @@ function PanelMgr:OnClickItem(item, btn)
 end
 
 -- 在这里，执行力本案例的操作！！！
+-- supercline.Singleton.PanelMgr = supercline.PanelMgr.New()
 function PanelMgr:Main()
     supercline.Singleton.PanelMgr:Open(supercline.Prefab.PanelLogin, true)
 end
