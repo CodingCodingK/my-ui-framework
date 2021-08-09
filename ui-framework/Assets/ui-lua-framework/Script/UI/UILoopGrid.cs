@@ -51,6 +51,7 @@ namespace CAE.Core
         public GameObject m_CellPrefab;
 
         public bool m_IsShowArrow = true;
+        // 初始值是Horizontal，Login prefab的面板上改成了V
         public e_Direction m_Direction = e_Direction.Horizontal;
         
         public int m_Row = 1;
@@ -214,11 +215,13 @@ namespace CAE.Core
 
         public virtual void ShowList(int num)
         {
+            Debug.Log("doing UILoopGrid.cs method : ShowList!");
             m_MinIndex = -1;
             m_MaxIndex = -1;
 
             if (m_Direction == e_Direction.Vertical)
             {
+                // CeilToInt 向上取整
                 float contentSize = (m_Spacing + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row);
                 m_ContentHeight = contentSize;
                 m_ContentWidth = m_ContentRectTrans.sizeDelta.x;
@@ -226,6 +229,7 @@ namespace CAE.Core
                 m_ContentRectTrans.sizeDelta = new Vector2(m_ContentWidth, contentSize);
                 if (num != m_MaxCount)
                 {
+                    // 设置锚点
                     m_ContentRectTrans.anchoredPosition = new Vector2(m_ContentRectTrans.anchoredPosition.x, 0);
                 }
             }
