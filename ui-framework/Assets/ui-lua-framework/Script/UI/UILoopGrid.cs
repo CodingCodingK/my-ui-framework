@@ -282,8 +282,11 @@ namespace CAE.Core
                         {
                             tempCellInfo.obj = GetPoolsObj();
                         }
+                        // 设置锚点
                         tempCellInfo.obj.transform.GetComponent<RectTransform>().anchoredPosition = tempCellInfo.pos;
+                        // 给名字
                         tempCellInfo.obj.name = i.ToString();
+                        // 展示
                         tempCellInfo.obj.gameObject.SetActive(true);
 
                         Func(OnLoopGridValueChanged, tempCellInfo.obj);
@@ -316,6 +319,8 @@ namespace CAE.Core
                 }
 
                 float cellPos = m_Direction == e_Direction.Vertical ? cellInfo.pos.y : cellInfo.pos.x;
+                
+                // 注意这里！为什么ShowList(20)只做了5个物体而不是20个？ 是因为后面的都在这被continue掉了！！！
                 if (IsOutRange(cellPos))
                 {
                     cellInfo.obj = null;
@@ -327,7 +332,9 @@ namespace CAE.Core
                 m_MaxIndex = i;
 
                 ULuaPanelItem cell = GetPoolsObj();
+                // 设置锚点
                 cell.transform.GetComponent<RectTransform>().anchoredPosition = cellInfo.pos;
+                // 给名字
                 cell.gameObject.name = i.ToString();
 
                 cellInfo.obj = cell;
@@ -410,19 +417,30 @@ namespace CAE.Core
             return false;
         }
 
+        /// <summary>
+        /// 一个池子，用栈来存储需要添加的PanelItem对象
+        /// </summary>
         protected Stack<ULuaPanelItem> poolsObj = new Stack<ULuaPanelItem>();
+        
+        /// <summary>
+        /// 从poolsObj池子里，取出栈顶的元素返回
+        /// </summary>
+        /// <returns></returns>
         protected virtual ULuaPanelItem GetPoolsObj()
         {
             ULuaPanelItem cell = null;
+            // 如果池子有物体
             if (poolsObj.Count > 0)
             {
                 cell = poolsObj.Pop();
             }
 
+            // 如果池子没物体，就放个预制体m_CellGameObject进去
             if (cell == null)
             {
                 GameObject _itemObj = Instantiate(m_CellGameObject) as GameObject;
                 cell = _itemObj.GetComponent<ULuaPanelItem>();
+                // 执行按钮事件绑定等
                 cell.BuildControl();
 
                 RectTransform rect = cell.transform as RectTransform;

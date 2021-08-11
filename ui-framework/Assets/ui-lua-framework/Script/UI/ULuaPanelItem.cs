@@ -29,6 +29,7 @@ namespace CAE.Core
 
         public override void OnCreate()
         {
+            // 调用PanelMgr.lua的NewPanelItem方法
             LuaPanelItem = LuaMgr.Instance.LuaPanelMgr.NewPanelItem(PanelItemName, transform, gameObject);
         }
 

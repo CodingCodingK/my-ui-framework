@@ -1,3 +1,5 @@
+-- 被load.lua调用
+-- 创建PanelLoginItem Class，并会放入supercline.classes中
 local PanelLoginItem = supercline.class("PanelLoginItem", supercline.PanelBase)
 
 function PanelLoginItem:Ctor(transform, gameObject)

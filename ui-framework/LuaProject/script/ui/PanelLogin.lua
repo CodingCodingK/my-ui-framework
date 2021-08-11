@@ -1,4 +1,5 @@
--- 创建PanelLogin，并会放入supercline.classes中
+-- 被load.lua调用
+-- 创建PanelLogin Class，并会放入supercline.classes中
 local PanelLogin = supercline.class("PanelLogin", supercline.PanelBase)
 
 supercline.Prefab.PanelLogin = "/Prefabs/UI/PanelLogin.prefab"
@@ -17,7 +18,7 @@ function PanelLogin:OnOpen(controls)
     end
 
     -- 获取了PanelLogin Prefab上的UILoopGrid组件
-    -- TODO get_Item方法具体是什么，在哪实现的？
+    -- 拿到了它的一个物体 LoopGrid_Login
     self.LoopGridLogin = controls:get_Item("LoopGrid_Login")
     self.LoopGridLogin:ShowList(20)
 end
