@@ -74,7 +74,14 @@ namespace CAE.Core
         protected float m_CellObjectWidth;
         protected float m_CellObjectHeight;
 
+        /// <summary>
+        /// content 是ScrollRect控件内的一个物体，是滚动视图的底层画布：LoopGrid_Login -> Viewport -> Content
+        /// </summary>
         protected GameObject m_Content;
+        
+        /// <summary>
+        ///  content 是ScrollRect控件内的一个物体的Rect，是滚动视图的底层画布：LoopGrid_Login -> Viewport -> Content
+        /// </summary>
         protected RectTransform m_ContentRectTrans;
 
         private bool m_isInited = false;
@@ -104,14 +111,16 @@ namespace CAE.Core
             if (m_isInited)
                 return;
 
+            // content 是ScrollRect控件内的一个物体：LoopGrid_Login -> Viewport -> Content
             m_Content = this.GetComponent<ScrollRect>().content.gameObject;
 
-            if (m_CellGameObject == null)
+            if (m_CellGameObject  == null)
             {
                 if (m_Content.transform.childCount > 0)
                 {
                     m_CellGameObject = m_Content.transform.GetChild(0).gameObject;
                 }
+                // demo会走这里，把m_CellPrefab放到m_CellGameObject里，作为每一行的内容(m_CellGameObject)
                 if (!m_CellGameObject && m_CellPrefab != null)
                 {
                     GameObject go = Instantiate(m_CellPrefab) as GameObject;
@@ -223,13 +232,14 @@ namespace CAE.Core
             {
                 // CeilToInt 向上取整
                 float contentSize = (m_Spacing + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row);
+                // 设置滚动视图的底层画布
                 m_ContentHeight = contentSize;
                 m_ContentWidth = m_ContentRectTrans.sizeDelta.x;
                 contentSize = contentSize < rectTrans.rect.height ? rectTrans.rect.height : contentSize;
                 m_ContentRectTrans.sizeDelta = new Vector2(m_ContentWidth, contentSize);
                 if (num != m_MaxCount)
                 {
-                    // 设置锚点
+                    // 设置滚动视图的锚点
                     m_ContentRectTrans.anchoredPosition = new Vector2(m_ContentRectTrans.anchoredPosition.x, 0);
                 }
             }

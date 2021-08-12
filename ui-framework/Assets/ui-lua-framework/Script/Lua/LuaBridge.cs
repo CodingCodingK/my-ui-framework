@@ -25,6 +25,9 @@ namespace CAE.Core
 
     public delegate ILuaPanelMgr NewLuaPanelMgr();
 
+    /// <summary>
+    /// 通过XLua，对接调用到LuaPanelMgr.lua对应方法。
+    /// </summary>
     public interface ILuaPanelMgr
     {
         void NewPanel(string panelName, string prefabPath, Transform tr, GameObject go);
@@ -52,11 +55,19 @@ namespace CAE.Core
         void OnDrag(string prefabPath, GameObject go, PointerEventData eventData);
         void OnDragEnd(string prefabPath, GameObject go, PointerEventData eventData);
 
+        /// <summary>
+        /// 子物体被点击，就给所属Panel传送一个事件。最后会调用LuaPanelMgr.lua 的 OnClickItem方法
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="btn"></param>
         void OnClickItem(ILuaPanelItem item, Component btn);
 
         void Main();
     }
 
+    /// <summary>
+    /// 通过XLua，对接调用到LuaPanelItem.lua对应方法。
+    /// </summary>
     public interface ILuaPanelItem
     {
         void OnOpen(Dictionary<string, Component> controls);

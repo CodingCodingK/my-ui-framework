@@ -69,6 +69,7 @@ namespace CAE.Core
         }
 
 
+        // 在这里重写了下面这些BasePanel的方法，调用lua的代码。传component过去，那边做处理。
         protected override void OnClick(Component btn)
         { LuaMgr.Instance.LuaPanelMgr.OnClick(Prefab, btn); }
         protected override void OnInputValueChanged(Component input, string val)

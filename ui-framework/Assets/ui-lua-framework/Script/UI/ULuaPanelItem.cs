@@ -24,12 +24,16 @@ namespace CAE.Core
 
     public sealed class ULuaPanelItem : PanelBase
     {
+        
+        /// <summary>
+        /// 通过XLua，对接调用到LuaPanelItem.lua对应方法。
+        /// </summary>
         public ILuaPanelItem LuaPanelItem { get; private set; } = null;
         public string PanelItemName = string.Empty;
 
         public override void OnCreate()
         {
-            // 调用PanelMgr.lua的NewPanelItem方法
+            // 通过XLua框架，调用PanelMgr.lua的NewPanelItem方法
             LuaPanelItem = LuaMgr.Instance.LuaPanelMgr.NewPanelItem(PanelItemName, transform, gameObject);
         }
 
@@ -59,7 +63,7 @@ namespace CAE.Core
         public override void OnHide()
         {
             if (LuaPanelItem != null)
-                LuaPanelItem.OnShow();
+                LuaPanelItem.OnHide();
         }
 
 
